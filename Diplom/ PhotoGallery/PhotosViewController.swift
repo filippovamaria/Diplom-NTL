@@ -86,7 +86,8 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
         
         expendedCVCell.imageExpendedCVCell.image = photosArray[indexPath.row]
         navigationController?.navigationBar.isHidden = true
-       
+        navigationController?.tabBarController?.tabBar.isHidden = true
+        
         NSLayoutConstraint.activate([
             expendedCVCell.topAnchor.constraint(equalTo: self.view.topAnchor),
             expendedCVCell.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -108,6 +109,7 @@ extension PhotosViewController: ExpendedCVCellDelegate {
     func didTapbuttonMultiply(view: ExpendedCVCell) {
         view.removeFromSuperview()
         navigationController?.navigationBar.isHidden = false
+        navigationController?.tabBarController?.tabBar.isHidden = false
     }
 }
 

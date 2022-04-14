@@ -34,9 +34,12 @@ final class ProfileHeaderView: UIView {
      lazy var userStatus: UITextField = {
         let textField = UITextField()
         textField.isHidden = false
-        textField.placeholder = "Waiting for something..."
+        textField.placeholder = "  Waiting for something..."
         textField.text = defaults.string(forKey: "Статус")
         textField.tintColor = .darkGray
+        textField.layer.cornerRadius = 10
+        textField.clipsToBounds = true
+        textField.backgroundColor = .systemGray5
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -63,7 +66,7 @@ final class ProfileHeaderView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 20
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -94,6 +97,8 @@ final class ProfileHeaderView: UIView {
         
         let labelsStackViewTop = labelsStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 27)
         let labelsStackViewLeft = labelsStackView.leadingAnchor.constraint(equalTo: userPhoto.trailingAnchor, constant: 16)
+        let labelStackHeight = labelsStackView.heightAnchor.constraint(equalToConstant: 80)
+        let labelStackRight = labelsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16)
 
         self.buttonTopConstraint = self.statusButton.topAnchor.constraint(equalTo: self.userPhoto.bottomAnchor, constant: 16)
         self.buttonTopConstraint?.priority = UILayoutPriority(rawValue: 999)
@@ -103,7 +108,7 @@ final class ProfileHeaderView: UIView {
         
         NSLayoutConstraint.activate([
             userPhotoTop, userPhotoLeft, userPhotoWidth, userPhotoHeight,
-            labelsStackViewTop, labelsStackViewLeft,
+            labelsStackViewTop, labelsStackViewLeft, labelStackHeight, labelStackRight,
             self.buttonTopConstraint, leadingButtonConstraint, trailingButtonConstraint, heightButtonConstraint
         ].compactMap({ $0 }))
     }

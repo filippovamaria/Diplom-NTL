@@ -117,6 +117,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, Pos
         
         let newModel = postArray[index - 1]
         expendedPost.setUpCell(with: newModel)
+        navigationController?.tabBarController?.tabBar.isHidden = true
         
         view.addSubview(expendedPost)
 
@@ -129,6 +130,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, Pos
     }
     
     func didTapButtonMultiplyDelegate(view: ExtendedPost) {
+        navigationController?.tabBarController?.tabBar.isHidden = false
         view.removeFromSuperview()
     }
 }
